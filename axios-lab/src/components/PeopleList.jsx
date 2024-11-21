@@ -2,16 +2,15 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 
-const StarshipList = () => {
-
-    const [starships, setStarships] = useState([])
+const PeopleList = () => {
+    const [peoples, setPeoples] = useState([])
 
     useEffect(() => {
-        const getStarships = async() => {
-            const res = await axios.get(`https://swapi.dev/api/starships/`)
-            setStarships(res.data.results)
+        const getPeoples = async() => {
+            const res = await axios.get(`https://swapi.dev/api/people/`)
+            setPeoples(res.data.results)
         }
-        getStarships()
+        getPeoples()
     },[])
 
     let navigate = useNavigate()
@@ -23,13 +22,13 @@ const StarshipList = () => {
     return (
         <>
             <h2>STARSHIPS</h2>
-            {starships.map((starship, key) => (
+            {peoples.map((people, key) => (
                 <div key={key} onClick={() => showShip(key)} className='card'>
-                    <h3>{starship.name}</h3>
+                    <h3>{people.name}</h3>
                 </div>
             ))}
         </>
     )
 }
 
-export default StarshipList
+export default PeopleList
